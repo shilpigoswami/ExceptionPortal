@@ -1,18 +1,24 @@
 <div class="parent1" style="background-color: lightblue">
   <div class="parent2">
     <h6>Ticket Type</h6>
-    <select [(ngModel)]="selectedTicketType" (change)="selectedTicket()">
+    <select [(ngModel)]="TT">
+      <option *ngFor="let TT of tts" [value]="TT"> {{ TT }} </option>
+    </select>
+    <!-- <select [(ngModel)]="selectedTicketType" (change)="selectedTicket()">
       <option disabled selected value> -- select an option -- </option>
       <option *ngFor="let ticket of ticketOptions" [ngValue]="ticket">{{ticket.name}}</option>
-    </select>
+    </select> -->
   </div>
 
   <div class="parent2">
     <h6>Violation Type</h6>
-    <select [disabled]="violationTypeDisabled" [(ngModel)]="selectedViolationType">
+    <select *ngIf="TT" [(ngModel)]="VT" [value]="VT">
+      <option *ngFor="let VT of vts"> {{ VT }} </option>
+    </select>
+    <!-- <select [disabled]="violationTypeDisabled" [(ngModel)]="selectedViolationType">
       <option disabled selected value> -- select an option -- </option>
       <option *ngIf="selectedTicketType== AHD SR">SR</option>
-    </select>
+    </select> -->
   </div>
 </div>
 

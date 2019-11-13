@@ -7,6 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssigneeComponent implements OnInit {
 
+  // tryout start from Here
+  private map = new Map<string, string[]>([
+    ['IMR', ['Resolution SLA']],
+    ['AHD SR', ['Response SLA', 'Resolution SLA', 'Re-Opened SLA']],
+  ])
+
+  TT: string;
+  VT: string;
+
+  get tts(): string[] {
+    return Array.from(this.map.keys());
+  }
+
+  get vts(): string[] | undefined {
+    return this.map.get(this.TT);
+  }
+
+// till
   constructor() { }
 
   ngOnInit() {
@@ -30,7 +48,7 @@ export class AssigneeComponent implements OnInit {
 
     }
     else if(this.selectedTicketType=="IMR"){
-      
+
     }
   }
 
