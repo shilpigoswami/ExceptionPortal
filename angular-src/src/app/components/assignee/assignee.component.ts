@@ -12,4 +12,28 @@ export class AssigneeComponent implements OnInit {
   ngOnInit() {
   }
 
+  selectedTicketType : string;
+  selectedViolationType : string;
+  violationTypeDisabled : boolean = true;
+
+  ticketOptions = [{name:"IMR", value:1}, {name:"AHD SR", value:2}]
+  violationSR = [{name:"Response SLA", value:1}, {name:"Resolution SLA", value:2},
+                      {name:"Re-opened SR", value:2}]
+  violationIMR = [{name:"Resolution SLA", value:1}]
+
+  selectedTicket(){
+    console.log(this.selectedTicketType);
+    if(this.selectedTicketType!=null){
+      this.violationTypeDisabled = false;
+    }
+    if(this.selectedTicketType=="AHD SR"){
+
+    }
+    else if(this.selectedTicketType=="IMR"){
+      
+    }
+  }
+
+
+
 }

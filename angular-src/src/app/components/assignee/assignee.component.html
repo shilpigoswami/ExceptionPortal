@@ -1,23 +1,80 @@
-<!DOCTYPE html>
-<html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<body>
+<div class="parent1" style="background-color: lightblue">
+  <div class="parent2">
+    <h6>Ticket Type</h6>
+    <select [(ngModel)]="selectedTicketType" (change)="selectedTicket()">
+      <option disabled selected value> -- select an option -- </option>
+      <option *ngFor="let ticket of ticketOptions" [ngValue]="ticket">{{ticket.name}}</option>
+    </select>
+  </div>
 
-<div ng-app="myApp" ng-controller="myCtrl">
-
-<select ng-model="selectedName" ng-options="x for x in names">
-</select>
-
+  <div class="parent2">
+    <h6>Violation Type</h6>
+    <select [disabled]="violationTypeDisabled" [(ngModel)]="selectedViolationType">
+      <option disabled selected value> -- select an option -- </option>
+      <option *ngIf="selectedTicketType== AHD SR">SR</option>
+    </select>
+  </div>
 </div>
-<p>Tickets Type</p>
-<script>
-var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope) {
-    $scope.names = ["IMr", "AHD SR"];
-});
-</script>
 
+<h5 style="background-color: lightblue">SLA Violation/Re-opened SRs of last five days</h5>
 
+<table style="background-color: lightblue">
+  <thead>
+    <tr >
+      <th>Request Number</th>
+      <th>Violation Details</th>
+      <th>Assignee</th>
+      <th>Ticket Type</th>
+      <th>Action Required</th>
+      <th>New Team</th>
+      <th>New Assignee</th>
+      <th>Exception Required</th>
+      <th>Reason for Exception</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>RQ111111</td>
+      <td>Resolution SLA</td>
+      <td>AAAAAA</td>
+      <td>IMR</td>
+      <td class="dropdown">
+        <select name="filter_for" >
+          <option value="Exception Required">Exception Required</option>
+          <option value="Assign Violation to other team">Assign Violation to other team</option>
+        </select>
+      </td>
+      <td class="dropdown">
+        <select name="filter_for" >
+          <option value="Exception Required">Exception Required</option>
+          <option value="Assign Violation to other team">Assign Violation to other team</option>
+        </select>
+      </td>
+      <td class="dropdown">
+        <select name="filter_for" >
+          <option value="Exception Required">Exception Required</option>
+          <option value="Assign Violation to other team">Assign Violation to other team</option>
+        </select>
+      </td>
+      <td class="dropdown">
+        <select name="filter_for" >
+          <option value="Exception Required">Exception Required</option>
+          <option value="Assign Violation to other team">Assign Violation to other team</option>
+        </select>
+      </td>
+      <td class="dropdown">
+        <select name="filter_for" >
+          <option value="Exception Required">Exception Required</option>
+          <option value="Assign Violation to other team">Assign Violation to other team</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>RQ22222</td>
+      <td>Re-opened Request</td>
+      <td>BBBBBB</td>
+      <td>SR</td>
+    </tr>
+  </tbody>
 
-</body>
-</html>
+</table>
