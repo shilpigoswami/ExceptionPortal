@@ -1,0 +1,24 @@
+.parent2 h6,select{
+  display: inline;
+  vertical-align: top;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  }
+
+.parent1 div{
+    display: inline;
+}
+
+th, td {
+    padding: 15px;
+    width: 50px;
+}
+
+th{
+  font-size: 20px;
+}
+
+td{
+  font-size: 20px;
+  font-weight: lighter;
+}

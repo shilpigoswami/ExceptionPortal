@@ -7,7 +7,10 @@ const Ticket = require('../models/exceptionticket');
 
 router.get('/tickets', (req, res, next) =>{
   //res.json({exceptionticket: req.exceptionticket});
-  Ticket.find({}, function(err, tickets){
+  var ticketType = req.query.tickettype;
+  var violationType = req.query.violationtype;
+
+  Ticket.find({tickettype:ticketType, violationdetail:violationType}, function(err, tickets){
   res.json({exceptionticket: tickets});
 });
 
