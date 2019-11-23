@@ -12,7 +12,7 @@ export class AssigneeComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectedTicketType : string;
+  selectedTicketType;
   selectedViolationType : string;
   violationTypeDisabled : boolean = true;
 
@@ -27,11 +27,11 @@ export class AssigneeComponent implements OnInit {
     if(this.selectedTicketType!=null){
       this.violationTypeDisabled = false;
     }
-    if(this.selectedTicketType.name =="AHD SR"){
+    if(this.selectedTicketType.name == "AHD SR"){
         this.violations = this.violationSR;
         console.log(this.selectedTicketType);
     }
-    else if(this.selectedTicketType.name =="IMR"){
+    else if(this.selectedTicketType.name == "IMR"){
         this.violations = this.violationIMR;
         console.log(this.selectedTicketType );
     }
