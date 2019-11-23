@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TicketsService} from '../../services/tickets.service';
 
 @Component({
   selector: 'app-assignee',
@@ -6,21 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./assignee.component.css']
 })
 export class AssigneeComponent implements OnInit {
-
-  constructor() { }
+  ticketModel:Object;
+  constructor(private ticketService:TicketsService) { }
 
   ngOnInit() {
   }
 
   selectedTicketType;
-  selectedViolationType : string;
+  selectedViolationType;
   violationTypeDisabled : boolean = true;
+  tableRowsDisabled : boolean = true;
 
   ticketOptions = [{name:"IMR", value:1}, {name:"AHD SR", value:2}]
   violationSR = [{name:"Response SLA", value:1}, {name:"Resolution SLA", value:2},
                       {name:"Re-opened SR", value:2}]
   violationIMR = [{name:"Resolution SLA", value:1}]
   violations = []
+  ticketData = []
 
   selectedTicket(){
     console.log(this.selectedTicketType);
@@ -36,6 +39,15 @@ export class AssigneeComponent implements OnInit {
         console.log(this.selectedTicketType );
     }
   }
+
+  get_tickets(){
+  this.ticketData = [{requestnubmer:"01", violationdetail:"Resolution SLA", assignee:"PO", tickettype:"IMR"}];
+  // this.ticketService.getTickets(this.selectedTicketType.name, this.selectedViolationType.name).subscribe(ticket => {
+  // this.ticketModel = (ticket as any).exceptionticket;
+  //
+  // console.log(this.ticketModel);
+  // });
+}
 
 
 

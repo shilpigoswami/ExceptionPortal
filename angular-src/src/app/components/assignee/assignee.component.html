@@ -9,7 +9,7 @@
 
   <div class="parent2">
     <h6>Violation Type</h6>
-     <select [disabled]="violationTypeDisabled" [(ngModel)]="selectedViolationType">
+     <select [disabled]="violationTypeDisabled" [(ngModel)]="selectedViolationType" (change)="get_tickets()">
       <option disabled selected value> -- select an option -- </option>
       <option *ngFor="let vltn of violations" [ngValue]="vltn">{{vltn.name}}</option>
     </select>
@@ -33,11 +33,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>RQ111111</td>
-      <td>Resolution SLA</td>
-      <td>AAAAAA</td>
-      <td>IMR</td>
+    <tr *ngFor="let singleTicket of ticketData">
+      <td>{{singleTicket.requestnubmer}}</td>
+      <td>{{singleTicket.violationdetail}}</td>
+      <td>{{singleTicket.assignee}}</td>
+      <td>{{singleTicket.tickettype}}</td>
       <td class="dropdown">
         <select name="filter_for" >
           <option value="Exception Required">Exception Required</option>
@@ -68,12 +68,6 @@
           <option value="Assign Violation to other team">Assign Violation to other team</option>
         </select>
       </td>
-    </tr>
-    <tr>
-      <td>RQ22222</td>
-      <td>Re-opened Request</td>
-      <td>BBBBBB</td>
-      <td>SR</td>
     </tr>
   </tbody>
 
