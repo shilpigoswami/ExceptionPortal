@@ -9,7 +9,6 @@ import {TicketsService} from '../../services/tickets.service';
 export class AssigneeComponent implements OnInit {
 
   constructor(private ticketService:TicketsService) {
-    this.selectedExceptionType = this.exRequired[1];
   }
 
   ngOnInit() {
@@ -19,6 +18,7 @@ export class AssigneeComponent implements OnInit {
   selectedTicketType;
   selectedViolationType;
   selectedActionType = {};
+  selectedExceptionType = {};
 
   violationTypeDisabled : boolean = true;
   newTeamDisabled : boolean[] = [];
@@ -75,8 +75,10 @@ export class AssigneeComponent implements OnInit {
     this.newTeam[i] = [];
     this.newAssignee[i] = [];
     this.exceptionReason[i]=[];
+    this.selectedExceptionType[i] = this.exRequired[1];
   }
   });
+
 
   // for(let i=0;i<2;i++){
   //   this.newTeamDisabled[i]=true;
@@ -92,23 +94,34 @@ export class AssigneeComponent implements OnInit {
       this.newAssigneeDisabled[index]= true;
       this.newTeam[index] = [];
       this.newAssignee[index] = [];
+      this.selectedExceptionType[index] = this.exRequired[0];
+      this.exceptionReasonDisabled[index]=false;
+      this.exceptionReason[index] = this.exceptionReasonSR_RO;
+
     }
     else if(this.selectedActionType[index].name == "Assign violation to other team"){
       this.newTeamDisabled[index] = false;
       this.newAssigneeDisabled[index]= false;
       this.newTeam[index] = this.newTeamSR;
       this.newAssignee[index] = ["DDDDDDD"];
+      this.selectedExceptionType[index] = this.exRequired[1];
+      this.exceptionReasonDisabled[index]=true;
+      this.exceptionReason[index] = [];
     }
-    console.log(this.newTeam);
-    // for(var i in this.selectedActionType){
-    //   if(this.selectedActionType[])
-    //   console.log(this.selectedActionType[i]);
-    //   console.log(index);
-    // }
+    //console.log(this.newTeam);
+
   }
 
   onSelectExceptionRequired(index){
-    console.log(this.selectedExceptionType);
+    if(this.selectedExceptionType[index].name == "Yes"){
+      this.exceptionReasonDisabled[index]=false;
+      this.exceptionReason[index] = this.exceptionReasonSR_RO;
+    }
+    else{
+      this.exceptionReasonDisabled[index]=true;
+      this.exceptionReason[index] = [];
+    }
+    //console.log(this.selectedExceptionType);
   }
 
 

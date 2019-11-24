@@ -39,30 +39,30 @@
       <td>{{singleTicket.assignee}}</td>
       <td>{{singleTicket.tickettype}}</td>
       <td  class="dropdown">
-        <select name="actionRequired" [(ngModel)]="selectedActionType[i]" (change)="onSelectActionRequired(i)">
+        <select name="actionRequired" style="width: 150px" [(ngModel)]="selectedActionType[i]" (change)="onSelectActionRequired(i)">
           <option disabled selected value> -- select an option -- </option>
           <option *ngFor="let action of actionRequired" [ngValue]="action">{{action.name}}</option>
         </select>
       </td>
       <td class="dropdown">
-        <select name="newTeam" [disabled]="newTeamDisabled[i]">
+        <select name="newTeam" style="width: 100px" [disabled]="newTeamDisabled[i]">
           <option *ngFor="let team of newTeam[i]" [ngValue]="team">{{team}}</option>
         </select>
       </td>
       <td class="dropdown">
-        <select name="newAssignee" [disabled]="newAssigneeDisabled[i]">
+        <select name="newAssignee" style="width: 100px" [disabled]="newAssigneeDisabled[i]">
           <option *ngFor="let assignee of newAssignee[i]" [ngValue]="assignee">{{assignee}}</option>
         </select>
       </td>
       <td class="dropdown">
-        <select name="exceptionRequired" [(ngModel)]="selectedExceptionType" (change)="onSelectExceptionRequired(i)">
+        <select name="exceptionRequired" style="width: 100px" [(ngModel)]="selectedExceptionType[i]" (change)="onSelectExceptionRequired(i)">
           <option disabled value> -- select an option -- </option>
           <option *ngFor="let ex of exRequired" [ngValue]="ex">{{ex.name}}</option>
         </select>
       </td>
       <td class="dropdown" >
-        <select name="exceptionReason"[disabled]="exceptionReasonDisabled" >
-          <option *ngFor="let exReason of exceptionReason" [ngValue]="exReason">{{exReason}}</option>
+        <select name="exceptionReason" style="width: 250px" [disabled]="exceptionReasonDisabled[i]" >
+          <option *ngFor="let exReason of exceptionReason[i]" [ngValue]="exReason">{{exReason}}</option>
         </select>
       </td>
     </tr>
