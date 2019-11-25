@@ -76,6 +76,7 @@ export class AssigneeComponent implements OnInit {
     this.newAssignee[i] = [];
     this.exceptionReason[i]=[];
     this.selectedExceptionType[i] = this.exRequired[1];
+    this.selectedActionType[i] = {};
   }
   });
 
@@ -94,16 +95,33 @@ export class AssigneeComponent implements OnInit {
       this.newAssigneeDisabled[index]= true;
       this.newTeam[index] = [];
       this.newAssignee[index] = [];
+
       this.selectedExceptionType[index] = this.exRequired[0];
       this.exceptionReasonDisabled[index]=false;
-      this.exceptionReason[index] = this.exceptionReasonSR_RO;
+      if(this.selectedTicketType.name == "AHD SR" &&
+      this.selectedViolationType.name == "Re-opened SR"){
+        this.exceptionReason[index] = this.exceptionReasonSR_RO;
+      }
+      else if(this.selectedTicketType.name == "IMR"){
+        this.exceptionReason[index] = this.exceptionReasonIMR;
+      }
+      else{
+        this.exceptionReason[index] = this.exceptionReasonSR_RR;
+      }
 
     }
     else if(this.selectedActionType[index].name == "Assign violation to other team"){
       this.newTeamDisabled[index] = false;
       this.newAssigneeDisabled[index]= false;
-      this.newTeam[index] = this.newTeamSR;
+      if(this.selectedTicketType.name == "AHD SR"){
+        this.newTeam[index] = this.newTeamSR;
+      }
+      else{
+        this.newTeam[index] = this.newTeamIMR;
+      }
+
       this.newAssignee[index] = ["DDDDDDD"];
+
       this.selectedExceptionType[index] = this.exRequired[1];
       this.exceptionReasonDisabled[index]=true;
       this.exceptionReason[index] = [];
@@ -115,11 +133,34 @@ export class AssigneeComponent implements OnInit {
   onSelectExceptionRequired(index){
     if(this.selectedExceptionType[index].name == "Yes"){
       this.exceptionReasonDisabled[index]=false;
-      this.exceptionReason[index] = this.exceptionReasonSR_RO;
+      if(this.selectedTicketType.name == "AHD SR" &&
+      this.selectedViolationType.name == "Re-opened SR"){
+        this.exceptionReason[index] = this.exceptionReasonSR_RO;
+      }
+      else if(this.selectedTicketType.name == "IMR"){
+        this.exceptionReason[index] = this.exceptionReasonIMR;
+      }
+      else{
+        this.exceptionReason[index] = this.exceptionReasonSR_RR;
+      }
+
+
+      this.newTeamDisabled[index] = true;
+      this.newAssigneeDisabled[index]= true;
+      this.newTeam[index] = [];
+      this.newAssignee[index] = [];
+      this.selectedActionType[index] = this.actionRequired[0];
+
     }
     else{
       this.exceptionReasonDisabled[index]=true;
       this.exceptionReason[index] = [];
+
+      this.newTeamDisabled[index] = true;
+      this.newAssigneeDisabled[index]= true;
+      this.newTeam[index] = [];
+      this.newAssignee[index] = [];
+      this.selectedActionType[index] = {}
     }
     //console.log(this.selectedExceptionType);
   }
