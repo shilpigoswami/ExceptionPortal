@@ -6,6 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AssigneeComponent } from './components/assignee/assignee.component';
 
+import {TicketsService} from './services/tickets.service';
+import {HttpClientModule} from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,9 +18,10 @@ import { AssigneeComponent } from './components/assignee/assignee.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [TicketsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

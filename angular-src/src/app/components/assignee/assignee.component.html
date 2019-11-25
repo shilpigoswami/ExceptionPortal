@@ -1,7 +1,7 @@
 <div class="parent1" style="background-color: lightblue">
   <div class="parent2">
     <h6>Ticket Type</h6>
-     <select [(ngModel)]="selectedTicketType" (change)="selectedTicket()">
+     <select name="ticketType" [(ngModel)]="selectedTicketType" (change)="onSelectTicketType()">
       <option disabled selected value> -- select an option -- </option>
       <option *ngFor="let ticket of ticketOptions" [ngValue]="ticket">{{ticket.name}}</option>
     </select>
@@ -9,7 +9,7 @@
 
   <div class="parent2">
     <h6>Violation Type</h6>
-     <select [disabled]="violationTypeDisabled" [(ngModel)]="selectedViolationType">
+     <select name="violationType" [disabled]="violationTypeDisabled" [(ngModel)]="selectedViolationType" (change)="onSelectViolationType()">
       <option disabled selected value> -- select an option -- </option>
       <option *ngFor="let vltn of violations" [ngValue]="vltn">{{vltn.name}}</option>
     </select>
@@ -28,52 +28,43 @@
       <th>Action Required</th>
       <th>New Team</th>
       <th>New Assignee</th>
-      <th>Exception Required</th>
+      <th>Exception Required?</th>
       <th>Reason for Exception</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>RQ111111</td>
-      <td>Resolution SLA</td>
-      <td>AAAAAA</td>
-      <td>IMR</td>
-      <td class="dropdown">
-        <select name="filter_for" >
-          <option value="Exception Required">Exception Required</option>
-          <option value="Assign Violation to other team">Assign Violation to other team</option>
+    <tr *ngFor="let singleTicket of ticketModel; let i = index">
+      <td>{{singleTicket.requestnumber}}</td>
+      <td>{{singleTicket.violationdetail}}</td>
+      <td>{{singleTicket.assignee}}</td>
+      <td>{{singleTicket.tickettype}}</td>
+      <td  class="dropdown">
+        <select name="actionRequired" style="width: 150px" [(ngModel)]="selectedActionType[i]" (change)="onSelectActionRequired(i)">
+          <option disabled selected value> -- select an option -- </option>
+          <option *ngFor="let action of actionRequired" [ngValue]="action">{{action.name}}</option>
         </select>
       </td>
       <td class="dropdown">
-        <select name="filter_for" >
-          <option value="Exception Required">Exception Required</option>
-          <option value="Assign Violation to other team">Assign Violation to other team</option>
+        <select name="newTeam" style="width: 100px" [disabled]="newTeamDisabled[i]">
+          <option *ngFor="let team of newTeam[i]" [ngValue]="team">{{team}}</option>
         </select>
       </td>
       <td class="dropdown">
-        <select name="filter_for" >
-          <option value="Exception Required">Exception Required</option>
-          <option value="Assign Violation to other team">Assign Violation to other team</option>
+        <select name="newAssignee" style="width: 100px" [disabled]="newAssigneeDisabled[i]">
+          <option *ngFor="let assignee of newAssignee[i]" [ngValue]="assignee">{{assignee}}</option>
         </select>
       </td>
       <td class="dropdown">
-        <select name="filter_for" >
-          <option value="Exception Required">Exception Required</option>
-          <option value="Assign Violation to other team">Assign Violation to other team</option>
+        <select name="exceptionRequired" style="width: 100px" [(ngModel)]="selectedExceptionType[i]" (change)="onSelectExceptionRequired(i)">
+          <option disabled value> -- select an option -- </option>
+          <option *ngFor="let ex of exRequired" [ngValue]="ex">{{ex.name}}</option>
         </select>
       </td>
-      <td class="dropdown">
-        <select name="filter_for" >
-          <option value="Exception Required">Exception Required</option>
-          <option value="Assign Violation to other team">Assign Violation to other team</option>
+      <td class="dropdown" >
+        <select name="exceptionReason" style="width: 250px" [disabled]="exceptionReasonDisabled[i]" >
+          <option *ngFor="let exReason of exceptionReason[i]" [ngValue]="exReason">{{exReason}}</option>
         </select>
       </td>
-    </tr>
-    <tr>
-      <td>RQ22222</td>
-      <td>Re-opened Request</td>
-      <td>BBBBBB</td>
-      <td>SR</td>
     </tr>
   </tbody>
 
